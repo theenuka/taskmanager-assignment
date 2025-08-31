@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>View Task</title></head>
+<body>
+<h1 th:if="${task != null}" th:text="${task.title}">Task Title</h1>
+<p th:if="${task == null}">Task not found!</p>
+</body>
+</html>

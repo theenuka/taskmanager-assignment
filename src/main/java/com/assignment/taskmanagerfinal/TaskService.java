@@ -23,4 +23,12 @@ public class TaskService {
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
+
+    // In TaskService.java
+    public Task getTaskById(Long id) {
+        return tasks.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst()
+                .orElse(null); // Returns null if not found
+    }
 }

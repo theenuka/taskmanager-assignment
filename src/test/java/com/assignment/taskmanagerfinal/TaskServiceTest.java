@@ -3,7 +3,7 @@ package com.assignment.taskmanagerfinal;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TaskServiceTest {
+class TaskServiceTest {
 
     @Test
     void shouldCreateTaskSuccessfully() {
