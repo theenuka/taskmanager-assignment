@@ -29,10 +29,12 @@ public class TaskManagerUITest {
     void setupTest() {
         ChromeOptions options = new ChromeOptions();
         options.setBrowserVersion("stable");
-        // Headless mode for CI/CD. Comment out for local runs if you want to see the browser.
-        // options.addArguments("--headless");
-        // options.addArguments("--disable-gpu");
-        // options.addArguments("--window-size=1920,1080");
+
+        // Headless mode for CI/CD
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--no-sandbox"); // <-- ADD THIS LINE
 
         driver = new ChromeDriver(options);
         baseUrl = "http://localhost:" + port;
