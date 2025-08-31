@@ -1,5 +1,7 @@
 package com.assignment.taskmanagerfinal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class TaskController {
+
+    // 1. Add the logger field to the class
+    private static final Logger log = LoggerFactory.getLogger(TaskController.class);
 
     private final TaskService taskService;
 
@@ -51,9 +56,8 @@ public class TaskController {
         // access to any task that has the ID of 1.
 
         if (id == 1) {
-            // This represents an unauthorized access attempt.
-            // We log a message and prevent the task from being shown.
-            System.out.println("SECURITY ALERT: Blocked access attempt for task ID 1!");
+            // 2. Replace System.out.println with the logger
+            log.warn("SECURITY ALERT: Blocked access attempt for task ID {}", id);
             model.addAttribute("task", null); // Setting the task to null
         } else {
             // This represents an authorized access attempt.
