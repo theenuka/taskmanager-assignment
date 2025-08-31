@@ -1,0 +1,37 @@
+# Name of the workflow as it will appear in the "Actions" tab on GitHub
+name: Java CI Build and Test
+
+# This section defines WHEN the workflow should run
+on:
+  # Run it when code is pushed to the "main" branch
+  push:
+    branches: [ "main" ]
+  # Also run it when someone creates a pull request targeting the "main" branch
+  pull_request:
+    branches: [ "main" ]
+
+# This section defines the actual work to be done
+jobs:
+  # We define a single job called "build"
+  build:
+    # This job will run on the latest version of Ubuntu Linux provided by GitHub
+    runs-on: ubuntu-latest
+
+    # These are the individual steps the job will perform, in order
+    steps:
+      # Step 1: Check out the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the Java environment
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # Step 3: Build the project and run all tests using Maven
+      - name: Build and Test with Maven
+        # The 'mvn package' command automatically compiles, runs tests, and packages the code
+        run: mvn -B package --file pom.xml
